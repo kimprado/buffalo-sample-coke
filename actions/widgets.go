@@ -63,6 +63,18 @@ func (v WidgetsResource) List(c buffalo.Context) error {
 
 // Show gets the data for one Widget. This function is mapped to
 // the path GET /widgets/{widget_id}
+
+// @Summary      Show an Widget
+// @Description  get string by ID
+// @Tags         widgets
+// @Accept       json
+// @Produce      json
+// @Param        widget_id   path      int  true  "Widget ID"
+// @Success      200  {object}  models.Widget
+// @Failure      400  {object}  models.HTTPError
+// @Failure      404  {object}  models.HTTPError
+// @Failure      500  {object}  models.HTTPError
+// @Router       /widgets/{widget_id} [get]
 func (v WidgetsResource) Show(c buffalo.Context) error {
 	// Get the DB connection from the context
 	tx, ok := c.Value("tx").(*pop.Connection)

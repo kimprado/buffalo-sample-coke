@@ -14,7 +14,7 @@ import (
 // Widget is used by pop to map your widgets database table to your go code.
 type Widget struct {
 	ID          uuid.UUID    `json:"id" db:"id"`
-	Title       string       `json:"title" db:"title"`
+	Title       string       `json:"title" db:"title" example:"hammer"`
 	Description nulls.String `json:"description" db:"description"`
 	CreatedAt   time.Time    `json:"created_at" db:"created_at"`
 	UpdatedAt   time.Time    `json:"updated_at" db:"updated_at"`
@@ -53,4 +53,10 @@ func (w *Widget) ValidateCreate(tx *pop.Connection) (*validate.Errors, error) {
 // This method is not required and may be deleted.
 func (w *Widget) ValidateUpdate(tx *pop.Connection) (*validate.Errors, error) {
 	return validate.NewErrors(), nil
+}
+
+// HTTPError example
+type HTTPError struct {
+	Code    int    `json:"code" example:"400"`
+	Message string `json:"message" example:"status bad request"`
 }
