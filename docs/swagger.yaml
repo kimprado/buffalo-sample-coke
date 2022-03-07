@@ -1,4 +1,4 @@
-basePath: /v2
+basePath: /
 definitions:
   models.HTTPError:
     properties:
@@ -31,7 +31,6 @@ definitions:
         description: Valid is true if String is not NULL
         type: boolean
     type: object
-host: petstore.swagger.io
 info:
   contact:
     email: support@swagger.io

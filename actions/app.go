@@ -56,8 +56,7 @@ var (
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 
-// @host petstore.swagger.io
-// @BasePath /v2
+// @BasePath /
 func App() *buffalo.App {
 	if app == nil {
 		app = buffalo.New(buffalo.Options{
