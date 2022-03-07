@@ -14,7 +14,7 @@ definitions:
       created_at:
         type: string
       description:
-        $ref: '#/definitions/nulls.String'
+        type: string
       id:
         type: string
       title:
@@ -44,6 +44,33 @@ info:
   title: Swagger Example API
   version: "1.0"
 paths:
+  /widgets/:
+    get:
+      consumes:
+      - application/json
+      description: gets all Widgets
+      produces:
+      - application/json
+      - text/html
+      - text/xml
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Widget'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.HTTPError'
+      summary: List Widgets
+      tags:
+      - widgets
   /widgets/{widget_id}:
     get:
       consumes:
@@ -54,9 +81,11 @@ paths:
         in: path
         name: widget_id
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
+      - text/html
+      - text/xml
       responses:
         "200":
           description: OK

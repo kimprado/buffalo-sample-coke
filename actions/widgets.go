@@ -30,6 +30,18 @@ type WidgetsResource struct {
 
 // List gets all Widgets. This function is mapped to the path
 // GET /widgets
+
+// @Summary      List Widgets
+// @Description  gets all Widgets
+// @Tags         widgets
+// @Accept       json
+// @Produce      json
+// @Produce      html
+// @Produce      xml
+// @Success      200  {array}  models.Widget
+// @Failure      404  {object}  models.HTTPError
+// @Failure      500  {object}  models.HTTPError
+// @Router       /widgets/ [get]
 func (v WidgetsResource) List(c buffalo.Context) error {
 	// Get the DB connection from the context
 	tx, ok := c.Value("tx").(*pop.Connection)
@@ -69,7 +81,9 @@ func (v WidgetsResource) List(c buffalo.Context) error {
 // @Tags         widgets
 // @Accept       json
 // @Produce      json
-// @Param        widget_id   path      int  true  "Widget ID"
+// @Produce      html
+// @Produce      xml
+// @Param        widget_id   path      string  true  "Widget ID"
 // @Success      200  {object}  models.Widget
 // @Failure      400  {object}  models.HTTPError
 // @Failure      404  {object}  models.HTTPError

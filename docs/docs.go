@@ -25,6 +25,46 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/widgets/": {
+            "get": {
+                "description": "gets all Widgets",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json",
+                    "text/html",
+                    "text/xml"
+                ],
+                "tags": [
+                    "widgets"
+                ],
+                "summary": "List Widgets",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Widget"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.HTTPError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.HTTPError"
+                        }
+                    }
+                }
+            }
+        },
         "/widgets/{widget_id}": {
             "get": {
                 "description": "get string by ID",
@@ -32,7 +72,9 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "produces": [
-                    "application/json"
+                    "application/json",
+                    "text/html",
+                    "text/xml"
                 ],
                 "tags": [
                     "widgets"
@@ -40,7 +82,7 @@ const docTemplate = `{
                 "summary": "Show an Widget",
                 "parameters": [
                     {
-                        "type": "integer",
+                        "type": "string",
                         "description": "Widget ID",
                         "name": "widget_id",
                         "in": "path",
@@ -97,7 +139,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "description": {
-                    "$ref": "#/definitions/nulls.String"
+                    "type": "string"
                 },
                 "id": {
                     "type": "string"
